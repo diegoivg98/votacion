@@ -1,3 +1,7 @@
+<?php
+include_once('./conexion.php');
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -30,8 +34,16 @@
             <div class="form-group">
                 <label for="region">Región:</label>
                 <select class="form-control" id="region" name="region" required>
-                    <option value="">Seleccionar Región</option>
-                    <!-- Agrega las opciones de regiones aquí -->
+                    <?php
+                     $consulta = "SELECT * FROM region";
+                     $resultado = pg_query($conexion, $consulta);
+
+                     while ($fila = pg_fetch_assoc($resultado)) {
+                        $idRegion = $fila['id_region']; 
+                        $nomRegion = $fila['nom_region']; 
+                        echo "<option value='" . $idRegion . "'>" . $nomRegion . "</option>";
+                      }
+                    ?>
                 </select>
             </div>
             <div class="form-group">
