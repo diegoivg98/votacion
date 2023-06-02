@@ -35,13 +35,9 @@ include_once('./conexion.php');
                 <label for="region">Región:</label>
                 <select class="form-control" id="region" name="region" required>
                     <?php
-                     $consulta = "SELECT * FROM region";
-                     $resultado = pg_query($conexion, $consulta);
-
-                     while ($fila = pg_fetch_assoc($resultado)) {
-                        $idRegion = $fila['id_region']; 
-                        $nomRegion = $fila['nom_region']; 
-                        echo "<option value='" . $idRegion . "'>" . $nomRegion . "</option>";
+                     $query = pg_query($conexion, "SELECT * FROM region");
+                     while ($row = pg_fetch_assoc($query)) {
+                        echo "<option value='" . $row['id_region'] . "'>" . $row['nom_region'] . "</option>";
                       }
                     ?>
                 </select>
