@@ -35,10 +35,10 @@ include_once('./conexion.php');
                 <label for="region">Región:</label>
                 <select class="form-control" id="region" name="region" required>
                     <?php
-                     $query = pg_query($conexion, "SELECT * FROM region");
-                     while ($row = pg_fetch_assoc($query)) {
+                    $query = pg_query($conexion, "SELECT * FROM region");
+                    while ($row = pg_fetch_assoc($query)) {
                         echo "<option value='" . $row['id_region'] . "'>" . $row['nom_region'] . "</option>";
-                      }
+                    }
                     ?>
                 </select>
             </div>
@@ -46,7 +46,6 @@ include_once('./conexion.php');
                 <label for="comuna">Comuna:</label>
                 <select class="form-control" id="comuna" name="comuna" required>
                     <option value="">Seleccionar Comuna</option>
-                    <!-- Agrega las opciones de comunas aquí -->
                 </select>
             </div>
             <div class="form-group">
@@ -79,11 +78,31 @@ include_once('./conexion.php');
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/valrut.js"></script>
 
     <!-- Agrega el enlace al archivo de script de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script language="Javascript" type="text/javascript">
+        $(document).ready(function() {
+            $('#region').change(function() {
+                var id_region = $('#region').val();
+                if (id_region != '') {
+                    $.ajax({
+                        url: "getComuna.php",
+                        method: "GET",
+                        data: {
+                            id_region: id_region
+                        },
+                        success: function(data) {
+                            $('#comuna').html(data);
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
