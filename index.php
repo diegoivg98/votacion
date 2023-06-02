@@ -52,7 +52,6 @@ include_once('./conexion.php');
                 <label for="candidato">Candidato:</label>
                 <select class="form-control" id="candidato" name="candidato" required>
                     <option value="">Seleccionar Candidato</option>
-                    <!-- Agrega las opciones de candidato -->
                 </select>
             </div>
             <div class="form-group">
@@ -87,16 +86,36 @@ include_once('./conexion.php');
     <script language="Javascript" type="text/javascript">
         $(document).ready(function() {
             $('#region').change(function() {
-                var id_region = $('#region').val();
-                if (id_region != '') {
+                var region = $('#region').val();
+                if (region != '') {
                     $.ajax({
                         url: "getComuna.php",
                         method: "GET",
                         data: {
-                            id_region: id_region
+                            region: region
                         },
                         success: function(data) {
                             $('#comuna').html(data);
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+
+<script language="Javascript" type="text/javascript">
+        $(document).ready(function() {
+            $('#comuna').change(function() {
+                var comuna = $('#comuna').val();
+                if (comuna != '') {
+                    $.ajax({
+                        url: "getCandidato.php",
+                        method: "GET",
+                        data: {
+                            comuna: comuna
+                        },
+                        success: function(data) {
+                            $('#candidato').html(data);
                         }
                     })
                 }
