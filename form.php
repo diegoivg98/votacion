@@ -54,10 +54,10 @@ include_once('./conexion.php');
                 </select>
             </div>
             <div class="form-group">
-                <label for="ciudad">Ciudad:</label>
-                <select class="form-control" id="ciudad" name="ciudad" required>
-                    <option value="">Seleccionar Ciudad</option>
-                    <!-- Agrega las opciones de ciudades aquí -->
+                <label for="candidato">Candidato:</label>
+                <select class="form-control" id="candidato" name="candidato" required>
+                    <option value="">Seleccionar Candidato</option>
+                    <!-- Agrega las opciones de candidato -->
                 </select>
             </div>
             <div class="form-group">
@@ -84,7 +84,6 @@ include_once('./conexion.php');
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
-
 
     <!-- Agrega el enlace al archivo de script de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
