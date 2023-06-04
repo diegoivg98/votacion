@@ -12,7 +12,7 @@ $candidato = $_POST['candidato'];
 $nosotros = implode(',', $_POST['nosotros']);
 
 // Realizar una consulta para verificar si ya existe rut y/o alias
-$query = "SELECT * FROM  WHERE rut = '$rut' AND alias = '$alias'";
+$query = "SELECT * FROM votante WHERE rut = '$rut' AND alias = '$alias'";
 $result = pg_query($conexion, $query);
 
 if (pg_num_rows($result) > 0) {
