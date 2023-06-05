@@ -1,5 +1,5 @@
 <?php
-include_once('./conexion.php');
+include 'conexion.php';
 
 $comuna = $_GET['comuna'];
 $query = pg_query($conexion, "SELECT comuna.id_comuna, candidato.nom_candidato
@@ -7,6 +7,6 @@ $query = pg_query($conexion, "SELECT comuna.id_comuna, candidato.nom_candidato
                               INNER JOIN public.candidato ON comuna.id_comuna = candidato.comuna
                               WHERE comuna = $comuna");
 
-while ($row = pg_fetch_row($query)) {
-    echo "<option value='" . $row[0] . "'>" . $row[1] . "</option>";
+while ($row = pg_fetch_assoc($query)) {
+    echo "<option value='" . $row['id_comuna'] . "'>" . $row['nom_candidato'] . "</option>";
 }
