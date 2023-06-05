@@ -1,5 +1,5 @@
 <?php
-include_once('./conexion.php');
+include 'conexion.php';
 
 $region = $_GET['region'];
 $query = pg_query($conexion, "SELECT comuna.id_comuna, comuna.nom_comuna
