@@ -1,29 +1,38 @@
 <?php
 include 'conexion.php';
 
-$rut = $_POST['rut'];
+// Obtener los valores del formulario
+$rut = $_POST["rut"];
 $nombre = $_POST['nombre'];
-$alias = $_POST['alias'];
-$email = $_POST['correo'];
+$alias = $_POST["alias"];
+$correo = $_POST['email'];
 $region = $_POST['region'];
 $comuna = $_POST['comuna'];
 $candidato = $_POST['candidato'];
 $recomendaciones = implode(',', $_POST['recomendaciones']);
 
-// Realizar una consulta para verificar si ya existe rut y/o alias
-$duplicados = "SELECT * FROM votante WHERE rut = '$rut' AND alias = '$alias'";
-$result = pg_query($conexion, $duplicados);
+$sql = "SELECT * FROM votante WHERE rut = '$rut' AND alias = '$alias'";
+$result = pg_query($conexion, $sql);
 
 if (pg_num_rows($result) > 0) {
-    // Registro duplicado encontrado, mostrar mensaje de error o realizar alguna acción
-    echo "<script type='text/javascript'>alert('Error: El registro ya existe en la base de datos.');</script>";
+  $response = array(
+    'status' => 'error',
+    'message' => 'Ya existe un registro con ese rut y/o alias.'
+  );
 } else {
-    $query = "INSERT INTO votante (rut, nombre, alias, email, region, comuna, candidato, recomendaciones) 
-              VALUES ('$rut', '$nombre', '$alias', '$email', '$region', '$comuna', '$candidato', '$recomendaciones')";
-    $result = pg_query($conexion, $query);
-    if (!$result) {
-        echo "Error al ejecutar la consulta: " . pg_last_error($conexion);
-    } else {
-        echo "La inserción se realizó correctamente.";
-    }
+  $query = pg_query($conexion, $sql);
+
+  if ($query) {
+    $response = array(
+      'status' => 'success',
+      'message' => 'Datos guardados correctamente.'
+    );
+  } else {
+    $response = array(
+      'status' => 'error',
+      'message' => 'Error al guardar los datos: ' . pg_last_error($conexion)
+    );
+  }
 }
+
+echo json_encode($response);
