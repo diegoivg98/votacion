@@ -6,6 +6,7 @@ include 'conexion.php';
 
 <head>
     <title>Formulario de Votación</title>
+    <link rel="stylesheet" href="./css/style.css">
     <!-- Agrega Toast -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Agrega los enlaces a los estilos de Bootstrap -->
@@ -14,69 +15,71 @@ include 'conexion.php';
 
 <body>
     <div class="container">
-        <h2>Formulario de Votación</h2>
-        <form id="formulario" action="guardar.php" method="POST">
-            <div class="form-group">
-                <label for="rut">RUT:</label>
-                <input type="text" class="form-control" id="rut" name="rut" required oninput="checkRut(this)">
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre y Apellido:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="alias">Alias:</label>
-                <input type="text" class="form-control" minlength="5" title="El Alias debe tener al menos 5 caracteres y contener letras y números." id="alias" name="alias" required>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" class="form-control" id="correo" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="region">Región:</label>
-                <select class="form-control" id="region" name="region" required>
-                    <option value="">Seleccionar Region</option>
-                    <?php
-                    $query = pg_query($conexion, "SELECT * FROM region");
-                    while ($row = pg_fetch_assoc($query)) {
-                        echo "<option value='" . $row['id_region'] . "'>" . $row['nom_region'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="comuna">Comuna:</label>
-                <select class="form-control" id="comuna" name="comuna" required>
-                    <option value="">Seleccionar Comuna</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="candidato">Candidato:</label>
-                <select class="form-control" id="candidato" name="candidato" required>
-                    <option value="">Seleccionar Candidato</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>¿Cómo se enteró de nosotros?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="web" name="recomendaciones[]" value="Web">
-                    <label class="form-check-label" for="web">Web</label>
+        <div class="form-container">
+            <h2>Formulario de Votación</h2>
+            <form id="formulario" action="guardar.php" method="POST">
+                <div class="form-group">
+                    <label for="rut">RUT:</label>
+                    <input type="text" class="form-control" id="rut" name="rut" required oninput="checkRut(this)">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="tv" name="recomendaciones[]" value="TV">
-                    <label class="form-check-label" for="tv">TV</label>
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="redes_sociales" name="recomendaciones[]" value="Redes Sociales">
-                    <label class="form-check-label" for="redes_sociales">Redes Sociales</label>
+                <div class="form-group">
+                    <label for="alias">Alias:</label>
+                    <input type="text" class="form-control" minlength="5" title="El Alias debe tener al menos 5 caracteres y contener letras y números." id="alias" name="alias" required>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="amigo" name="recomendaciones[]" value="Amigos">
-                    <label class="form-check-label" for="amigo">Amigos</label>
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" class="form-control" id="correo" name="email" required>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Votar</button>
-        </form>
+                <div class="form-group">
+                    <label for="region">Región:</label>
+                    <select class="form-control" id="region" name="region" required>
+                        <option value="">Seleccionar Region</option>
+                        <?php
+                        $query = pg_query($conexion, "SELECT * FROM region");
+                        while ($row = pg_fetch_assoc($query)) {
+                            echo "<option value='" . $row['id_region'] . "'>" . $row['nom_region'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comuna">Comuna:</label>
+                    <select class="form-control" id="comuna" name="comuna" required>
+                        <option value="">Seleccionar Comuna</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="candidato">Candidato:</label>
+                    <select class="form-control" id="candidato" name="candidato" required>
+                        <option value="">Seleccionar Candidato</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>¿Cómo se enteró de nosotros?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="web" name="recomendaciones[]" value="Web">
+                        <label class="form-check-label" for="web">Web</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tv" name="recomendaciones[]" value="TV">
+                        <label class="form-check-label" for="tv">TV</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="redes_sociales" name="recomendaciones[]" value="Redes Sociales">
+                        <label class="form-check-label" for="redes_sociales">Redes Sociales</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="amigo" name="recomendaciones[]" value="Amigos">
+                        <label class="form-check-label" for="amigo">Amigos</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Votar</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
