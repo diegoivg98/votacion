@@ -4,7 +4,7 @@
 Los siguientes recursos fueron utilizados para el desarrollo de este proyecto:
 
 - PHP
-- HTML/CSS
+- HTML/CSS/JavaScript
 - Bootstrap 5
 - jQuery/AJAX
 - Toastify
