@@ -1,0 +1,21 @@
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.form-container .btn-primary {
+    width: 100%;
+}
