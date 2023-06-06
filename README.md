@@ -16,3 +16,5 @@ Los siguientes recursos fueron utilizados para el desarrollo de este proyecto:
 <pre>git clone https://github.com/diegoivg98/votacion</pre>
 
 2. Mover la carpeta "votacion" a la ruta "C:\xampp\htdocs"(se crea una vez instalado XAMPP)
+
+3. Abrir XAMPP Control Panel, click en Start, luego en Admin (para que vaya a localhost) y finalmente haz click en Votacion para que ejecute el index.php
